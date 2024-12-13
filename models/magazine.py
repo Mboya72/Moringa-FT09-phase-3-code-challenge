@@ -15,6 +15,10 @@ class Magazine(Base):
     def __init__(self, name, category):
         self._name = name
         self._category = category
+        
+    @property
+    def id(self):
+        return self.id    
 
     def __repr__(self):
         return f'<Magazine {self.name}>'
