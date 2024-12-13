@@ -40,5 +40,21 @@ class Magazine(Base):
             raise ValueError("Category must be a non-empty string.")
         self._category = value
 
+    def contributors(self):
+        return [article.author for article in self.articles]
+
+    def article_titles(self):
+        if not self.articles:
+            return None
+        return [article.title for article in self.articles]
+
+    def contributing_authors(self):
+        authors = {}
+        for article in self.articles:
+            author = article.author
+            authors[author] = authors.get(author, 0) + 1
+
+        return [author for author, count in authors.items() if count > 2] or None
+
     def __repr__(self):
         return f'<Magazine {self.name}>'
