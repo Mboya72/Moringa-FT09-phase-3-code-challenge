@@ -21,6 +21,9 @@ class Article(Base):
         self.title = title  
         self.content = content
 
+    @property
+    def title(self):
+        return self._title
 
     def __repr__(self):
         return f'<Article {self.title}>'
