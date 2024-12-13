@@ -62,10 +62,8 @@ and articles and displays them on the console.
 
 Magazines:
 <Magazine Tech Weekly (Technology)>
-
 Authors:
 <Author John Doe>
-
 Articles:
 <Article The Future of AI>
 
