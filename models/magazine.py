@@ -3,11 +3,18 @@ from sqlalchemy.orm import relationship
 from database.connection import Base
 
 
-class Magazine:
-    def __init__(self, id, name, category):
-        self.id = id
-        self.name = name
-        self.category = category
+class Magazine(Base):
+    __tablename__ = 'magazines'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    _name = Column('name', String, nullable=False)
+    _category = Column('category', String, nullable=False)
+
+    articles = relationship('Article', backref='magazine', lazy=True)
+
+    def __init__(self, name, category):
+        self._name = name
+        self._category = category
 
     def __repr__(self):
         return f'<Magazine {self.name}>'
