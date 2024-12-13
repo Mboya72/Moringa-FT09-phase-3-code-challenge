@@ -1,6 +1,6 @@
 # Magazine Management System
-This is a simple console-based application for managing authors, magazines, and articles. 
-The system allows users to input data for authors, magazines, and articles, store the information 
+This is a simple console-based application for managing authors, magazines, and articles. <br/>
+The system allows users to input data for authors, magazines, and articles, store the information<br/> 
 in a database, and retrieve it for display.
 
 ## Features
@@ -10,29 +10,29 @@ in a database, and retrieve it for display.
   **Display Data:** Retrieve and display all authors, magazines, and articles from the database.<br/>
 
 ## Requirements
-Python 3.x
-SQLite database
-Database schema with tables: authors, magazines, articles
+Python 3.x<br/>
+SQLite database<br/>
+Database schema with tables: authors, magazines, articles<br/>
 
 ## Setup
 ## **Install Dependencies:**
-  Ensure you have Python 3.x installed.
-  Install any required dependencies (e.g., SQLite).
-  If using an external package manager, create a requirements.txt for your packages.
+  Ensure you have Python 3.x installed.<br/>
+  Install any required dependencies (e.g., SQLite).<br/>
+  If using an external package manager, create a requirements.txt for your packages.<br/>
 
 ## **Database Setup:**
-  The database and tables are automatically created when the script runs using create_tables() from the database.setup module.
-  Tables include:
-    **authors:** Stores author details.
-    **magazines:** Stores magazine names and categories.
-    **articles:** Stores article details, linked to authors and magazines.
+  The database and tables are automatically created when the script runs using create_tables() from the database.setup module.<br/>
+  Tables include:<br/>
+    **authors:** Stores author details.<br/>
+    **magazines:** Stores magazine names and categories.<br/>
+    **articles:** Stores article details, linked to authors and magazines.<br/>
 
 ## Usage
-  **Run the application:**
-    To start the application, execute the script:
-      python main.py
-  **Interactive Input:**
-    The program will prompt you to enter details for an author, a magazine, and an article.
+  **Run the application:**<br/>
+    To start the application, execute the script:<br/>
+      ```python main.py```<br/>
+  **Interactive Input:**<br/>
+    The program will prompt you to enter details for an author, a magazine, and an article.<br/>
   ### Example input:
 
     Enter author's name: John Doe
@@ -43,12 +43,10 @@ Database schema with tables: authors, magazines, articles
 
   ### **Database Operations:**
 
-Authors: The Author.create() method is used to add a new author to the database.
-Magazines: The Magazine.create() method is used to add a new magazine with a category.
-Articles: The Article.create() method is used to add an article linked to the created author and magazine.
-Viewing Data:
-
-After data is inserted, the application queries the database for all authors, magazines, 
+**Authors:** The Author.create() method is used to add a new author to the database.<br/>
+**Magazines:** The Magazine.create() method is used to add a new magazine with a category.<br/>
+**Articles:** The Article.create() method is used to add an article linked to the created author and magazine.<br/>
+**Viewing Data:**After data is inserted, the application queries the database for all authors, magazines, <br/>
 and articles and displays them on the console.
 
   ### Example Output
