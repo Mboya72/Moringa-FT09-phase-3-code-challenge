@@ -4,10 +4,10 @@ The system allows users to input data for authors, magazines, and articles, stor
 in a database, and retrieve it for display.
 
 ## Features
-  **Create Authors:** Add new authors to the database.
-  **Create Magazines:** Add magazines with categories to the database.
-  **Create Articles:** Write articles that are linked to both authors and magazines.
-  **Display Data:** Retrieve and display all authors, magazines, and articles from the database.
+  **Create Authors:** Add new authors to the database.<br/>
+  **Create Magazines:** Add magazines with categories to the database.<br/>
+  **Create Articles:** Write articles that are linked to both authors and magazines.<br/>
+  **Display Data:** Retrieve and display all authors, magazines, and articles from the database.<br/>
 
 ## Requirements
 Python 3.x
