@@ -3,6 +3,9 @@ from database.connection import get_db_connection
 from models.article import Article
 from models.author import Author
 from models.magazine import Magazine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
 
 def main():
     # Initialize the database and create tables

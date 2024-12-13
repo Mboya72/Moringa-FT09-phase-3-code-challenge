@@ -1,3 +1,8 @@
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
+from database.connection import Base
+
+
 class Magazine:
     def __init__(self, id, name, category):
         self.id = id

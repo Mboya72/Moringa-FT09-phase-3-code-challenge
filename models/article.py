@@ -1,3 +1,8 @@
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
+from database.connection import Base
+
+
 class Article:
     def __init__(self, id, title, content, author_id, magazine_id):
         self.id = id
