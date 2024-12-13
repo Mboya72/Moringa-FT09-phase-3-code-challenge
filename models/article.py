@@ -25,5 +25,11 @@ class Article(Base):
     def title(self):
         return self._title
 
+    @title.setter
+    def title(self, value):
+        if len(value) < 5 or len(value) > 50:
+            raise ValueError("Title must be between 5 and 50 characters.")
+        self._title = value
+
     def __repr__(self):
         return f'<Article {self.title}>'
