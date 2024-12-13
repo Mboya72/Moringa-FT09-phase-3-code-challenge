@@ -24,5 +24,21 @@ class Magazine(Base):
     def name(self):
         return self._name
 
+    @name.setter
+    def name(self, value):
+        if len(value) < 2 or len(value) > 16:
+            raise ValueError("Magazine name must be between 2 and 16 characters.")
+        self._name = value
+
+    @property
+    def category(self):
+        return self._category
+
+    @category.setter
+    def category(self, value):
+        if not value:
+            raise ValueError("Category must be a non-empty string.")
+        self._category = value
+
     def __repr__(self):
         return f'<Magazine {self.name}>'
