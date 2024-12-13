@@ -59,13 +59,12 @@ and articles and displays them on the console.
     Enter magazine category: Technology
     Enter article title: The Future of AI
     Enter article content: AI is transforming industries...
-
-Magazines:<br />
-<Magazine Tech Weekly (Technology)><br />
-Authors:<br />
-<Author John Doe><br />
-Articles:<br />
-<Article The Future of AI><br />
+    Magazines:<br />
+    <Magazine Tech Weekly (Technology)><br />
+    Authors:<br />
+    <Author John Doe><br />
+    Articles:<br />
+    <Article The Future of AI><br />
 
 ## License
 This project is open-source and available under the MIT License.
