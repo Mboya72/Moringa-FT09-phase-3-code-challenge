@@ -46,7 +46,7 @@ Database schema with tables: authors, magazines, articles<br/>
 **Authors:** The Author.create() method is used to add a new author to the database.<br/>
 **Magazines:** The Magazine.create() method is used to add a new magazine with a category.<br/>
 **Articles:** The Article.create() method is used to add an article linked to the created author and magazine.<br/>
-**Viewing Data:**After data is inserted, the application queries the database for all authors, magazines, <br/>
+**Viewing Data:** After data is inserted, the application queries the database for all authors, magazines, <br/>
 and articles and displays them on the console.
 
   ### Example Output
