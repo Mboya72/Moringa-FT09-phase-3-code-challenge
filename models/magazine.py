@@ -1,60 +1,40 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
-from database.connection import Base
+import sys
+import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-class Magazine(Base):
-    __tablename__ = 'magazines'
+from database.connection import get_db_connection
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    _name = Column('name', String, nullable=False)
-    _category = Column('category', String, nullable=False)
+class Magazine:
+    def __init__(self, id, name, category):
+        self.id = id
+        self.name = name
+        self.category = category
 
-    articles = relationship('Article', backref='magazine', lazy=True)
+    @classmethod
+    def create(cls, name, category):
+        """Insert a new magazine into the database."""
+        conn = get_db_connection()  
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO magazines (name, category) VALUES (?, ?)', (name, category))
+        conn.commit()
+        conn.close()
 
-    def __init__(self, name, category):
-        self._name = name
-        self._category = category
-        
-    @property
-    def id(self):
-        return self.id    
-
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        if len(value) < 2 or len(value) > 16:
-            raise ValueError("Magazine name must be between 2 and 16 characters.")
-        self._name = value
-
-    @property
-    def category(self):
-        return self._category
-
-    @category.setter
-    def category(self, value):
-        if not value:
-            raise ValueError("Category must be a non-empty string.")
-        self._category = value
-
-    def contributors(self):
-        return [article.author for article in self.articles]
-
-    def article_titles(self):
-        if not self.articles:
-            return None
-        return [article.title for article in self.articles]
-
-    def contributing_authors(self):
-        authors = {}
-        for article in self.articles:
-            author = article.author
-            authors[author] = authors.get(author, 0) + 1
-
-        return [author for author, count in authors.items() if count > 2] or None
+    @classmethod
+    def get_all(cls):
+        """Retrieve all magazines from the database."""
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM magazines')
+        rows = cursor.fetchall()
+        conn.close()
+        return [cls(row['id'], row['name'], row['category']) for row in rows]  
 
     def __repr__(self):
-        return f'<Magazine {self.name}>'
+        return f"<Magazine {self.name} ({self.category})>"
+
+Magazine.create('Tech Weekly', 'Technology')
+
+magazines = Magazine.get_all()
+for magazine in magazines:
+    print(magazine)
