@@ -35,7 +35,7 @@ def main():
 
     # Create an article
     cursor.execute('INSERT INTO articles (title, content, author_id, magazine_id) VALUES (?, ?, ?, ?)',
-                   (article_title, article_content, author_id, magazine_id))
+    (article_title, article_content, author_id, magazine_id))
 
     conn.commit()
 
