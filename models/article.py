@@ -1,25 +1,18 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
-from database.connection import Base
+import sys
+import os
 
 
-class Article(Base):
-    __tablename__ = 'articles'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    _title = Column('title', String, nullable=False)
-    content = Column(String, nullable=True)
-    author_id = Column(Integer, ForeignKey('authors.id'), nullable=False)
-    magazine_id = Column(Integer, ForeignKey('magazines.id'), nullable=False)
+from database.connection import get_db_connection
 
-    author = relationship("Author", backref="articles")
-    magazine = relationship("Magazine", backref="articles")
-
-    def __init__(self, author, magazine, title, content):
-        self.author = author
-        self.magazine = magazine
-        self.title = title  
+class Article:
+    def __init__(self, id, title, content, author_id, magazine_id):
+        self.id = id
+        self._title = title
         self.content = content
+        self.author_id = author_id
+        self.magazine_id = magazine_id
 
     @property
     def title(self):
@@ -27,9 +20,44 @@ class Article(Base):
 
     @title.setter
     def title(self, value):
+        """Validate title length (between 5 and 50 characters)."""
         if len(value) < 5 or len(value) > 50:
             raise ValueError("Title must be between 5 and 50 characters.")
         self._title = value
 
+    @staticmethod
+    def create(title, content, author_id, magazine_id):
+        """Create and insert a new article into the database."""
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        # Insert a new article
+        cursor.execute('''
+            INSERT INTO articles (title, content, author_id, magazine_id) 
+            VALUES (?, ?, ?, ?)
+        ''', (title, content, author_id, magazine_id))
+
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def get_all():
+        """Retrieve all articles from the database."""
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute('SELECT * FROM articles')
+        articles = cursor.fetchall()
+
+        conn.close()
+
+        return [Article(article['id'], article['title'], article['content'], article['author_id'], article['magazine_id']) for article in articles]
+
     def __repr__(self):
         return f'<Article {self.title}>'
+
+if __name__ == "__main__":
+
+    articles = Article.get_all()
+    for article in articles:
+        print(article)
